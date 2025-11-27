@@ -2,6 +2,7 @@
     const BASE_PATH = __DIR__ . "/";
 
     require_once "autoload.php";
+    require_once BASE_PATH . "config/app.php";
 
     if(isset($_GET['views'])){
         $url = explode("/",$_GET['views']);
@@ -13,17 +14,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <?php include_once BASE_PATH . "app/views/inc/head.php"; ?>
 </head>
-<body>
+<body class="h-dvh flex flex-col">
+
+
     <?php
+        include_once BASE_PATH . "public/icons/icons.svg";
         use app\controllers\viewController;
-        
         $insView = new viewController();
         $insView->load($url[0]);
-
     ?>
 </body>
 </html>
