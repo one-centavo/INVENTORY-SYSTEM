@@ -16,7 +16,7 @@
 <head>
     <?php include_once BASE_PATH . "app/views/inc/head.php"; ?>
 </head>
-<body class="h-dvh flex flex-col">
+<body class="h-dvh flex flex-col lg:flex-row">
 
 
     <?php
@@ -25,5 +25,7 @@
         $insView = new viewController();
         $insView->load($url[0]);
     ?>
+
+    <?php include_once BASE_PATH . "app/views/inc/scripts.php"; ?>
 </body>
 </html>
