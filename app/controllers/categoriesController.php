@@ -19,11 +19,16 @@
             $name = trim($_POST['name']);
             $description = trim($_POST['description']);
 
+            $params = [
+                ':category_name' => $name,
+                ':description' => $description
+            ];
+
             if(!isset($name) && empty($name)){
                 echo "Rellene el campo de nombre antes de agregar la categoría.";
                 return;
             }
-            if($this->model->addCategory($name, $description)){
+            if($this->model->addCategory($params)){
                 echo "Categoría agregada con éxito.";
             }else{
                 echo "Error al agregar la categoría.";

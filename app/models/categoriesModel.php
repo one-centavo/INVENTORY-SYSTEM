@@ -10,12 +10,9 @@
             return $stmt->fetchAll();
         }
 
-        public function addCategory($name, $description){
+        public function addCategory($params){
             $sql = "INSERT INTO categories (category_name, description) VALUES (:category_name, :description)";
-            $params = [
-                ':category_name' => $name,
-                ':description' => $description
-            ];
+            
             return $this->query($sql, $params);
         }
 

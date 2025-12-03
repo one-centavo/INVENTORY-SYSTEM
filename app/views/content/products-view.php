@@ -1,7 +1,10 @@
 <?php
     use app\controllers\productsController;
+    use app\controllers\categoriesController;
     $productsController = new productsController();
     $products = $productsController->getProductsController();
+    $categoriesController = new categoriesController();
+    $categories = $categoriesController->getCategoriesController();
 ?>
 <main class="flex-1 flex flex-col gap-4 bg-gray-50">
     <header class="p-6 md:p-9 border-b border-gray-300 bg-white">
@@ -51,9 +54,9 @@
                             foreach($products as $product):
                     ?>
                     <tr>
-                        <td class="p-3"><?=  htmlspecialchars($product['id']) ;?></td>
-                        <td class="p-3"><?=  htmlspecialchars($product['name']) ;?></td>
-                        <td class="p-3"><?=  htmlspecialchars($product['category']) ;?></td>
+                        <td class="p-3"><?=  htmlspecialchars($product['id_product']) ;?></td>
+                        <td class="p-3"><?=  htmlspecialchars($product['name_product']) ;?></td>
+                        <td class="p-3"><?=  htmlspecialchars($product['category_name']) ;?></td>
                         <td class="p-3"><?=  htmlspecialchars($product['price']) ;?></td>
                         <td class="p-3"><?=  htmlspecialchars($product['stock']) ;?></td>
                         <td class="p-3 flex gap-2">
@@ -82,23 +85,26 @@
     </section>
 
     <div class="hidden fixed inset-0 items-center justify-center bg-black/50 z-50" id="modal">
-        <form class="bg-white p-6 py-12 rounded-lg shadow-lg w-11/12 max-w-sm flex flex-col gap-5 transition-all duration-300 ease-out transform translate-y-10 opacity-0"id="modalForm">
-
-            <input type="text" placeholder="Nombre del producto" class="border border-gray-300 rounded-md p-2">
-            <input type="number" placeholder="Precio" class="border border-gray-300 rounded-md p-2">
-            <input type="number" placeholder="Cantidad" class="border border-gray-300 rounded-md p-2">
-            <select name="category" id="" class="border border-gray-300 rounded-md p-2">
+        <form class="bg-white p-6 py-12 rounded-lg shadow-lg w-11/12 max-w-sm flex flex-col gap-5 transition-all duration-300 ease-out transform translate-y-10 opacity-0"id="modalForm" method="POST" action="<?= APP_URL ?>app/controllers/ajax.php">
+            <input type="hidden" name="action" value="addProduct">
+            <input type="text" placeholder="Nombre del producto" class="border border-gray-300 rounded-md p-2" name="nameProduct">
+            <input type="number" placeholder="Precio" class="border border-gray-300 rounded-md p-2" name="price">
+            <input type="number" placeholder="Cantidad" class="border border-gray-300 rounded-md p-2" name="stock">
+            <select name="categoryId" id="" class="border border-gray-300 rounded-md p-2">
                 <option value="" disabled selected>Seleccione una categoría</option>
-                <option value="Electrónica">Electrónica</option>
-                <option value="Ropa">Ropa</option>
-                <option value="Hogar">Hogar</option>
-                <option value="Juguetes">Juguetes</option>
-                <option value="Deportes">Deportes</option>
+                <?php
+                    foreach($categories as $category):
+                ?>
+                <option value="<?= htmlspecialchars($category['id_category']) ?>"><?= htmlspecialchars($category['category_name']) ?></option>
+                <?php
+                    endforeach;
+                ?>
             </select>
 
             <div class="flex flex-row gap-4 justify-end">
                 <button type="button" class="bg-gray-600 text-white p-1 rounded-md hover:bg-gray-700 transition-all duration-300 ease-in-out cursor-pointer" id="btnCloseModal">Cancelar</button>
                 <button type="submit" class="bg-green-600 text-white p-1 rounded-md hover:bg-green-700 transition-all duration-300 ease-in-out cursor-pointer">Agregar Producto</button>
+                <p id="message"></p>
             </div>
 
         </form>
@@ -106,7 +112,6 @@
 
     <div class="hidden fixed inset-0 items-center justify-center bg-black/50 z-50" id="modalEdit">
         <form class="bg-white p-6 py-12 rounded-lg shadow-lg w-11/12 max-w-sm flex flex-col gap-5 transition-all duration-300 ease-out transform translate-y-10 opacity-0"id="modalFormEdit">
-
             <input type="text" placeholder="Nombre del producto" class="border border-gray-300 rounded-md p-2">
             <input type="number" placeholder="Precio" class="border border-gray-300 rounded-md p-2">
             <input type="number" placeholder="Cantidad" class="border border-gray-300 rounded-md p-2">
