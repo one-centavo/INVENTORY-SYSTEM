@@ -5,7 +5,6 @@
 
     class viewController extends viewModel{
 
-
         protected function obtainView($view){
            if($view != ""){
             $response = $this->loadView($view);
@@ -16,7 +15,7 @@
             return $response;
         }
 
-        public function load($views){
+        public function load($views, $url = []){
             $view  = $this->obtainView($views);
 
             if($view == "404" || $view == "login" || $view == "403"){

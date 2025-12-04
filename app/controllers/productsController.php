@@ -42,5 +42,22 @@
                 echo "Error al agregar el producto.";
             }
             
-        }    
+        }
+        
+        public function deleteProductController($idProduct){
+            $params = [
+                ':id_product' => $idProduct
+            ];
+
+            if($this->model->deleteProduct($params)){
+                if(headers_sent()){
+                    echo "<script>window.location.href='".APP_URL."products';</script>";
+                }else{
+                    header("Location: ".APP_URL."products");
+                }
+                
+            }else{
+                echo "Error al eliminar el producto.";
+            }
+        }
     }

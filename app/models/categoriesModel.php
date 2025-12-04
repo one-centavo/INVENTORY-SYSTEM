@@ -16,4 +16,9 @@
             return $this->query($sql, $params);
         }
 
+        public function deleteCategory($params){
+            $sql = "DELETE FROM categories WHERE id_category = :id";
+            return $this->query($sql, $params);
+        }
+
     }

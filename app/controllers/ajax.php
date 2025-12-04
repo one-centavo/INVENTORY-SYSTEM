@@ -4,6 +4,10 @@
     use app\controllers\productsController;
     use app\controllers\userController;
 
+    if(isset($_GET['views'])){
+        $url = explode("/",$_GET['views']);
+    }
+
     if(isset($_POST['action']) && !empty($_POST['action'])){
         $action = $_POST['action'];
         $categoriesController = new categoriesController();
@@ -27,4 +31,7 @@
                 break;
         }
     }
+
+
+    
     
