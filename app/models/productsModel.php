@@ -21,4 +21,8 @@
             return $this->query($sql,$params);
         }
 
+        public function deleteProduct($params){
+            $sql = "DELETE FROM products WHERE id_product = :id_product";
+            return $this->query($sql,$params);
+        }
     }

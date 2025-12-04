@@ -36,5 +36,22 @@
             
         }
 
+        public function deleteCategoryController($id){
+            $params = [
+                ':id' => $id
+            ];
+
+            if($this->model->deleteCategory($params)){
+                if(headers_sent()){
+                    echo "<script>window.location.href='".APP_URL."categories';</script>";
+                }else{
+                    header("Location: ".APP_URL."categories");
+                    exit();
+                }
+            }else{
+                echo "Error al eliminar la categoría.";
+            }
+        }
+
     
     }

@@ -23,7 +23,7 @@
         include_once BASE_PATH . "public/icons/icons.svg";
         use app\controllers\viewController;
         $insView = new viewController();
-        $insView->load($url[0]);
+        $insView->load($url[0], $url);
     ?>
 
     <?php include_once BASE_PATH . "app/views/inc/scripts.php"; ?>

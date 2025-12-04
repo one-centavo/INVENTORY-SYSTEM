@@ -52,6 +52,10 @@ function closeModal(id,formId) {
   document.body.style.overflowY = "";
 }
 
+function getDataEdit(event){
+    const parent = event.target.parentElement;
+}
+
 btnOpenFormAdd?.addEventListener("click", () => openModal("modal","modalForm"));
 btnCloseFormAdd?.addEventListener("click", () => closeModal("modal","modalForm"));
 btnHamburger?.addEventListener("click", menu);
