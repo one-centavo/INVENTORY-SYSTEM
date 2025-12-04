@@ -1,11 +1,11 @@
 <?php
-    use app\controllers\productsController;
-    $productsController = new productsController();
-    $products = $productsController->getProductsController();
+    use app\controllers\userController;
+    $userController = new userController();
+    $users = $userController->getUsersController();
 ?>
 <main class="flex-1 flex flex-col gap-4 bg-gray-50">
     <header class="p-6 md:p-9 border-b border-gray-300 bg-white">
-        <h1 class="text-xl">Gestión de Productos</h1>
+        <h1 class="text-xl">Gestión de Usuarios</h1>
     </header>
 
     
@@ -34,14 +34,14 @@
                 <tbody>
 
                     <?php 
-                        if($products):
-                            foreach($products as $product):
+                        if($users):
+                            foreach($users as $user):
                     ?>
                     <tr>
-                        <td class="p-3"><?=  htmlspecialchars($product['id']) ;?></td>
-                        <td class="p-3"><?=  htmlspecialchars($product['user_name']) ;?></td>
-                        <td class="p-3"><?=  htmlspecialchars($product['user_last_name']) ;?></td>
-                        <td class="p-3"><?=  htmlspecialchars($product['email']) ;?></td>
+                        <td class="p-3"><?=  htmlspecialchars($user['id_user']) ;?></td>
+                        <td class="p-3"><?=  htmlspecialchars($user['user_name']) ;?></td>
+                        <td class="p-3"><?=  htmlspecialchars($user['user_last_name']) ;?></td>
+                        <td class="p-3"><?=  htmlspecialchars($user['email']) ;?></td>
                         <td class="p-3 flex gap-2">
                             <button class="bg-blue-600 text-white p-1 rounded-md hover:bg-blue-700 transition-all duration-300 ease-in-out cursor-pointer" id="btnOpenModalEdit">
                                 Editar
@@ -68,15 +68,16 @@
     </section>
 
     <div class="hidden fixed inset-0 items-center justify-center bg-black/50 z-50" id="modal">
-        <form class="bg-white p-6 py-12 rounded-lg shadow-lg w-11/12 max-w-sm flex flex-col gap-5 transition-all duration-300 ease-out transform translate-y-10 opacity-0"id="modalForm">
-
-            <input type="text" placeholder="Nombre" class="border border-gray-300 rounded-md p-2">
-            <input type="text" placeholder="Apellido" class="border border-gray-300 rounded-md p-2">
-            <input type="email" placeholder="Correo Electrónico" class="border border-gray-300 rounded-md p-2">
-            <input type="password" placeholder="Contraseña" class="border border-gray-300 rounded-md p-2">
+        <form class="bg-white p-6 py-12 rounded-lg shadow-lg w-11/12 max-w-sm flex flex-col gap-5 transition-all duration-300 ease-out transform translate-y-10 opacity-0"id="modalForm" method="post" action="<?= APP_URL ;?>app/controllers/ajax.php">
+            <input type="hidden" name="action" value="createUser">
+            <input type="text" placeholder="Nombre" class="border border-gray-300 rounded-md p-2" name="user_name">
+            <input type="text" placeholder="Apellido" class="border border-gray-300 rounded-md p-2" name="user_last_name">
+            <input type="email" placeholder="Correo Electrónico" class="border border-gray-300 rounded-md p-2" name="email">
+            <input type="password" placeholder="Contraseña" class="border border-gray-300 rounded-md p-2" name="password">
             <div class="flex flex-row gap-4 justify-end">
                 <button type="button" class="bg-gray-600 text-white p-1 rounded-md hover:bg-gray-700 transition-all duration-300 ease-in-out cursor-pointer" id="btnCloseModal">Cancelar</button>
                 <button type="submit" class="bg-green-600 text-white p-1 rounded-md hover:bg-green-700 transition-all duration-300 ease-in-out cursor-pointer">Agregar Usuario</button>
+                <p id="message"></p>
             </div>
 
         </form>
