@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": {
+            "app\\": "App/"
+        }
+    },
+    "require": {
+        "spatie/browsershot": "^5.1"
+    }
+}

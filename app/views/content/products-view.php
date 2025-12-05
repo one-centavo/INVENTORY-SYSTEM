@@ -26,12 +26,12 @@
                 </svg>
                 Nuevo Producto
             </button>
-            <button class="bg-gray-600 text-white flex justify-center items-center gap-2 p-2 rounded-md w-full sm:w-auto whitespace-nowrap hover:bg-gray-700 transition-all duration-300 ease-in-out cursor-pointer">
+            <a href="<?= APP_URL ?>generate-pdf" class="bg-gray-600 text-white flex justify-center items-center gap-2 p-2 rounded-md w-full sm:w-auto whitespace-nowrap hover:bg-gray-700 transition-all duration-300 ease-in-out cursor-pointer">
                 <svg class="w-6 h-6" viewBox="0 0 24 24">
                     <use href="#download"></use>
                 </svg>
                 Exportar PDF
-            </button>
+            </a>
         </article>
     </section>
     <section class="overflow-x-auto w-full px-4 lg:px-8 pb-8">

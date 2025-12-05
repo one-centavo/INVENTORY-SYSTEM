@@ -1,8 +1,14 @@
 # Dependencias
 node_modules/
+vendor/
 
 # Archivos generados
 public/css/output.css
+public/reports/
 
 # Archivos del sistema
 .DS_Store
+Thumbs.db
+
+# Archivos de configuración del entorno
+.env
