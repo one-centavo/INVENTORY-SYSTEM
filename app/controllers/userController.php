@@ -37,4 +37,21 @@
         public function getUsersController() {
             return $this->model->getAllUsers();
         }
+
+        public function deleteUserController($id_user) {
+            $params = [
+                ':id_user' => $id_user
+            ];
+
+            if($this->model->deleteUser($params)){
+                if(headers_sent()){
+                    echo "<script>window.location.href='".APP_URL."users';</script>";
+                }else{
+                    header("Location: ".APP_URL."users");
+                    exit();
+                }
+            }else{
+                echo "Error al eliminar el usuario.";
+            }
+        }
     }
