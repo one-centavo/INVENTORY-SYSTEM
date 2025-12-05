@@ -46,9 +46,9 @@
                             <button class="bg-blue-600 text-white p-1 rounded-md hover:bg-blue-700 transition-all duration-300 ease-in-out cursor-pointer" id="btnOpenModalEdit">
                                 Editar
                             </button>
-                            <button class="bg-red-600 text-white p-1 rounded-md hover:bg-red-700 transition-all duration-300 ease-in-out cursor-pointer">
+                            <a class="bg-red-600 text-white p-1 rounded-md hover:bg-red-700 transition-all duration-300 ease-in-out cursor-pointer" href="<?= APP_URL ;?>deleteUser/<?= htmlspecialchars($user['id_user']) ;?>" onclick="return confirm('¿Estas seguro de eliminar este usuario?')">
                                 Eliminar
-                            </button>
+                            </a>
                         </td>
                     </tr>
 
@@ -57,7 +57,7 @@
                         else:
                     ?>
                     <tr>
-                        <td colspan="5" class="p-7 text-center">No hay usuarios disponibles.</td>
+                        <td colspan="6" class="p-7 text-center">No hay usuarios disponibles.</td>
                     </tr>
                     <?php
                         endif;

@@ -11,7 +11,13 @@
 
         public function getAllUsers(){
             $sql = "SELECT id_user, user_name, user_last_name, email FROM users";
-            return $this->query($sql);
+            $stmt =  $this->query($sql);
+            return $stmt->fetchAll();
+        }
+
+        public function deleteUser($params){
+            $sql = "DELETE FROM users WHERE id_user = :id_user";
+            return $this->query($sql, $params);
         }
 
 
